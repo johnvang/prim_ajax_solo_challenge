@@ -1,13 +1,14 @@
 
 $(document).ready(function() {
 
-    $.ajax('data.json', {
-        success: function(response){
-            console.log(response);
-        },
-        error: function(request, errorType, errorMessage){
-            alert(errorType + " " + errorMessage);
-        }
-    });
+    $.ajax({
+    	url:"data.json"
+    }).done(function(response){
+    	console.log(response);
+    	for(var it=0; it<response.length; it++){
+    		var $content = $("<div><p style='color:" + response[it].value + "' >color: " + response[it].color + "<br>" + "value: " + response[it].value + "</p></div><br>");
+    		$(".content-placeholder").append($content);
+    	}
+    })
 
-})
+});
